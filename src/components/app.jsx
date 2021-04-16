@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./app.css";
 import SearchBar from "./SearchBar/searchBar";
 import TitleBar from "./TitleBar/titleBar";
+import Table from "./Table/table";
 const axios = require("axios");
 // import TitleBar from "./TitleBar/titleBar";
 // import BookViewer from "./BookViewer/bookViewer";
@@ -17,6 +18,16 @@ class App extends Component {
     };
   }
 
+  apiCall() {
+    return new Promise((resolve, reject) => {
+      const response = axios.get("http://www.devcodecampmusiclibrary.com/api/music");
+      if (response != null) {
+        resolve(response);
+      } else {
+        reject(new Error("Didn't work"));
+      }
+    });
+  }
   async getMusic(params) {
     try {
       const response = await axios.get("http://www.devcodecampmusiclibrary.com/api/music");
@@ -54,12 +65,15 @@ class App extends Component {
     });
   }
   render() {
+    console.log("GFYS");
+    console.log(this.apiCall());
     this.getMusic();
     return (
       <div className="App">
         <br />
         <TitleBar />
         <SearchBar />
+        <Table />
         {/* <TitleBar />
         <BookViewer book={this.books[this.state.bookNumber]} nextBook={() => this.goToNextBook()} previousBook={() => this.goToPreviousBook()} />
         <BookCreator addNewBook={this.addNewBook.bind(this)} /> */}

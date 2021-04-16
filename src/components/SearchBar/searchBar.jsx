@@ -3,10 +3,10 @@ import "./searchBar.css";
 
 function SearchBar(props) {
   return (
-    <div class="container-fluid">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Artist, Song, Album...etc." aria-label="Search" />
-        <button class="btn btn-outline-success" type="submit">
+    <div className="container-fluid">
+      <form className="d-flex">
+        <input className="form-control me-2" type="search" placeholder="Artist, Song, Album...etc." aria-label="Search" />
+        <button className="btn btn-outline-success" type="submit">
           Search
         </button>
       </form>
