@@ -1,5 +1,6 @@
 import React from "react";
 import "./table.css";
+import Row from "../Row/row";
 
 function Table(props) {
   return (
@@ -15,26 +16,14 @@ function Table(props) {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>A song</td>
-          <td>An Album</td>
-          <td>An Artist</td>
-          <td>A Genre</td>
-          <td>A Date</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>A song</td>
-          <td>An Album</td>
-          <td>An Artist</td>
-          <td>A Genre</td>
-          <td>A Date</td>
-        </tr>
+        <Row music={props.music} />
         {/* <tr>
-          <th scope="row">3</th>
-          <td colSpan="2">Larry the Bird</td>
-          <td>@twitter</td>
+          <th scope="row">{props.music[0].id}</th>
+          <td>A song</td>
+          <td>An Album</td>
+          <td>An Artist</td>
+          <td>A Genre</td>
+          <td>A Date</td>
         </tr> */}
       </tbody>
     </table>
