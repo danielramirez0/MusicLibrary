@@ -17,14 +17,6 @@ function Table(props) {
       </thead>
       <tbody>
         <Row music={props.music} />
-        {/* <tr>
-          <th scope="row">{props.music[0].id}</th>
-          <td>A song</td>
-          <td>An Album</td>
-          <td>An Artist</td>
-          <td>A Genre</td>
-          <td>A Date</td>
-        </tr> */}
       </tbody>
     </table>
   );

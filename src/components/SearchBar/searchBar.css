@@ -1,3 +1,13 @@
 .container-fluid {
-  margin-bottom: 30px;
+  width: auto;
+}
+
+.scenter {
+  margin: 0;
+  position: relative;
+  width: auto;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
