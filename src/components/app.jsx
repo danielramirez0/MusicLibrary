@@ -3,8 +3,6 @@ import SearchBar from "./SearchBar/searchBar";
 import TitleBar from "./TitleBar/titleBar";
 import Table from "./Table/table";
 import ButtonGroup from "./ButtonGroup/buttonGroup";
-import Button from "./Button/button";
-import Filter from "./Filter/filter";
 import "./app.css";
 const axios = require("axios");
 
@@ -12,17 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // data: [
-      //   {
-      //     id: 1,
-      //     song: "Example Name",
-      //     album: "Example Album",
-      //     artist: "Example Artist",
-      //     genre: "Example Genre",
-      //     releaseDate: "Example Release Date",
-      //   },
-      // ],
-      data: "",
+      rootData: "",
+      viewData: "",
       showTable: false,
     };
   }
@@ -45,18 +34,21 @@ class App extends Component {
   async runPromise() {
     try {
       const response = await this.getMusicData("http://www.devcodecampmusiclibrary.com/api/music");
-      console.log(response.data);
-      this.setState((this.state.data = response.data));
+      this.setState(((this.state.rootData = response.data), (this.state.viewData = response.data)));
     } catch (error) {
       console.log(error);
     }
   }
 
-  updateDataSet() {
-    this.apiCall();
-  }
+  updateViewData() {}
+
   displayTable(mode) {
     mode === "off" ? this.setState({ showTable: false }) : this.setState({ showTable: true });
+  }
+
+  displayReset() {
+    this.state.showSearch === true ? this.setState({ showSearch: false }) : this.setState({});
+    this.state.showTable === true ? this.setState({ showTable: false }) : this.setState({});
   }
 
   render() {
@@ -64,10 +56,9 @@ class App extends Component {
       <div className="App">
         <br />
         <TitleBar />
-        <SearchBar />
-        <ButtonGroup buttonClick={(mode) => this.displayTable(mode)} />
-        <Filter />
-        {this.state.showTable === false ? null : <Table music={this.state.data} />}
+        <SearchBar userSubmission />
+        <ButtonGroup toggleTable={(mode) => this.displayTable(mode)} toggleSearch={(mode) => this.displaySearch(mode)} resetUI={() => this.displayReset()} />
+        {this.state.showTable === false ? null : <Table music={this.state.viewData} />}
       </div>
     );
   }

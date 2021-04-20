@@ -1,6 +1,6 @@
-import React from "react";
-import "./table.css";
+import React, { Component } from "react";
 import Row from "../Row/row";
+import "./table.css";
 
 function Table(props) {
   return (
