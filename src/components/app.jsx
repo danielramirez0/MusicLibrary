@@ -11,44 +11,48 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          id: 1,
-          song: "Example Name",
-          album: "Example Album",
-          artist: "Example Artist",
-          genre: "Example Genre",
-          releaseDate: "Example Release Date",
-        },
-      ],
+      // data: [
+      //   {
+      //     id: 1,
+      //     song: "Example Name",
+      //     album: "Example Album",
+      //     artist: "Example Artist",
+      //     genre: "Example Genre",
+      //     releaseDate: "Example Release Date",
+      //   },
+      // ],
+      data: "",
+      showTable: false,
     };
   }
 
   componentDidMount() {
-    this.setState({});
+    this.runPromise();
   }
-  apiCall(target) {
+
+  getMusicData(target) {
     return new Promise((resolve, reject) => {
       const response = axios.get(target);
       if (response != null) {
         resolve(response);
       } else {
-        reject(new Error("Didn't work"));
+        reject(new Error("Unable to access data from " + target));
       }
     });
   }
 
-  async getMusic() {
+  async runPromise() {
     try {
-      const response = await this.apiCall("http://www.devcodecampmusiclibrary.com/api/music");
-      this.state.data = response
+      const response = await this.getMusicData("http://www.devcodecampmusiclibrary.com/api/music");
+      console.log(response.data);
+      this.setState((this.state.data = response.data));
     } catch (error) {
       console.log(error);
     }
   }
-  
+
   updateDataSet() {
-    this.apiCall()
+    this.apiCall();
   }
 
   render() {
@@ -57,9 +61,10 @@ class App extends Component {
         <br />
         <TitleBar />
         <SearchBar />
-        <Button type="submit" text="Display All Music" buttonClick={(dataSet) => )} />
-        <Table music={this.state.data} />
+        <Button type="button" text="Display All Music" buttonClick={() => this.setState({ showTable: true })} />
+        <Button type="button" text="Reset" buttonClick={() => this.setState({ showTable: false })} />
         <Filter />
+        {this.state.showTable === false ? null : <Table music={this.state.data} />}
       </div>
     );
   }

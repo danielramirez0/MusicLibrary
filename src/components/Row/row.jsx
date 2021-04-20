@@ -8,7 +8,7 @@ const Row = (props) => {
       {renderData.map((renderData) => (
         <tr key={renderData.id}>
           <th scope="row">{renderData.id}</th>
-          <td>{renderData.song}</td>
+          <td>{renderData.title}</td>
           <td>{renderData.album}</td>
           <td>{renderData.artist}</td>
           <td>{renderData.genre}</td>

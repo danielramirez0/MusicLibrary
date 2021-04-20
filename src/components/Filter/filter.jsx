@@ -8,17 +8,17 @@ const Filter = (props) => {
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li>
-          <a className="dropdown-item" href="">
+          <a className="dropdown-item" href="http://localhost:3000">
             Action
           </a>
         </li>
         <li>
-          <a className="dropdown-item" href="">
+          <a className="dropdown-item" href="http://localhost:3000">
             Another action
           </a>
         </li>
         <li>
-          <a className="dropdown-item" href="">
+          <a className="dropdown-item" href="http://localhost:3000">
             Something else here
           </a>
         </li>
