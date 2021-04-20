@@ -14,13 +14,20 @@ class Table extends Component {
     };
   }
 
+  handleChange = (event) => {
+    this.setState({ searchInput: event.target.value }, () => {
+      this.globalSearch();
+    });
+  };
+
   globalSearch = () => {
     let { searchInput, data } = this.state;
     let filteredData = data.filter((value) => {
       return (
-        value.id.toString().toLowerCase().includes(searchInput.toLowerCase()) ||
+        value.id.toString().includes(searchInput.toString()) ||
         value.title.toLowerCase().includes(searchInput.toLowerCase()) ||
         value.album.toLowerCase().includes(searchInput.toLowerCase()) ||
+        value.artist.toLowerCase().includes(searchInput.toLowerCase()) ||
         value.genre.toLowerCase().includes(searchInput.toLowerCase()) ||
         value.releaseDate.toString().toLowerCase().includes(searchInput.toLowerCase())
       );
@@ -32,7 +39,7 @@ class Table extends Component {
     // const Table = (props) => {
     return (
       <>
-        <SearchBar />
+        <SearchBar inputTracking={(e) => this.handleChange(e)} />
         <table className="table table-dark table-striped">
           <thead>
             <tr>
