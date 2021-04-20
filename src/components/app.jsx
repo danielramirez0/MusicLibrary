@@ -40,8 +40,6 @@ class App extends Component {
     }
   }
 
-  updateViewData() {}
-
   displayTable(mode) {
     mode === "off" ? this.setState({ showTable: false }) : this.setState({ showTable: true });
   }
@@ -56,7 +54,6 @@ class App extends Component {
       <div className="App">
         <br />
         <TitleBar />
-        <SearchBar userSubmission />
         <ButtonGroup toggleTable={(mode) => this.displayTable(mode)} toggleSearch={(mode) => this.displaySearch(mode)} resetUI={() => this.displayReset()} />
         {this.state.showTable === false ? null : <Table music={this.state.viewData} />}
       </div>
