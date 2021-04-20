@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "./SearchBar/searchBar";
 import TitleBar from "./TitleBar/titleBar";
 import Table from "./Table/table";
+import ButtonGroup from "./ButtonGroup/buttonGroup";
 import Button from "./Button/button";
 import Filter from "./Filter/filter";
 import "./app.css";
@@ -54,6 +55,9 @@ class App extends Component {
   updateDataSet() {
     this.apiCall();
   }
+  displayTable(mode) {
+    mode === "off" ? this.setState({ showTable: false }) : this.setState({ showTable: true });
+  }
 
   render() {
     return (
@@ -61,8 +65,7 @@ class App extends Component {
         <br />
         <TitleBar />
         <SearchBar />
-        <Button type="button" text="Display All Music" buttonClick={() => this.setState({ showTable: true })} />
-        <Button type="button" text="Reset" buttonClick={() => this.setState({ showTable: false })} />
+        <ButtonGroup buttonClick={(mode) => this.displayTable(mode)} />
         <Filter />
         {this.state.showTable === false ? null : <Table music={this.state.data} />}
       </div>

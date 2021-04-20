@@ -2,7 +2,8 @@ import React from "react";
 import "./filter.css";
 const Filter = (props) => {
   return (
-    <div className="dropdown">
+    <>
+      {/* <div className="dropdown"> */}
       <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Filter
       </button>
@@ -23,7 +24,8 @@ const Filter = (props) => {
           </a>
         </li>
       </ul>
-    </div>
+      {/* </div> */}
+    </>
   );
 };
 
