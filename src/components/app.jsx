@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SearchBar from "./SearchBar/searchBar";
 import TitleBar from "./TitleBar/titleBar";
 import Table from "./Table/table";
 import ButtonGroup from "./ButtonGroup/buttonGroup";
@@ -33,7 +32,8 @@ class App extends Component {
 
   async runPromise() {
     try {
-      const response = await this.getMusicData("http://www.devcodecampmusiclibrary.com/api/music");
+      // const response = await this.getMusicData("http://www.devcodecampmusiclibrary.com/api/music");
+      const response = await this.getMusicData("http://localhost:5000/api/songs");
       this.setState(((this.state.rootData = response.data), (this.state.viewData = response.data)));
     } catch (error) {
       console.log(error);
