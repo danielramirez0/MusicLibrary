@@ -44,13 +44,22 @@ class App extends Component {
     });
   }
 
+  addMusicAPICall(endpoint, record) {
+    return new Promise((res, rej) => {
+      const response = axios.post(endpoint, record);
+      if (response != null) {
+        res(response);
+      } else {
+        rej(new Error("Unable to post data at " + endpoint));
+      }
+    });
+  }
+
   async addMusicData(record) {
     try {
-      axios.post(this.state.mainEndpoint, record);
-      let recordWithKey = record;
-      recordWithKey.id = this.state.viewData.length + 1;
+      const response = await this.addMusicAPICall(this.state.mainEndpoint, record);
       this.setState({
-        viewData: [...this.state.viewData, recordWithKey],
+        viewData: [...this.state.viewData, response.data],
         showForm: false,
         showTable: true,
       });
