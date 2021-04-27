@@ -12,6 +12,7 @@ class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    let endpoint = "http://localhost:5000/api/songs";
     let record = {
       title: this.state.title,
       album: this.state.album,
@@ -20,7 +21,7 @@ class Form extends Component {
       releaseDate: this.state.releaseDate,
     };
 
-    this.props.addMusicData(record);
+    this.props.addMusicData(endpoint, record);
   }
 
   handleChange(event) {
@@ -33,63 +34,59 @@ class Form extends Component {
   render() {
     return (
       <>
-        <form>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
           <div className="form-group row">
             <label htmlFor="inputSong3" className="col-sm-2 col-form-label">
               Song Title
             </label>
             <div className="col-sm-10">
-              <input type="email" className="form-control" id="inputSong3" placeholder="Song Title" />
+              <input type="text" name="title" onChange={(event) => this.handleChange(event)} value={this.state.title} className="form-control" id="inputSong3" placeholder="Song Title" />
             </div>
           </div>
           <div className="form-group row">
-            <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
-              Password
+            <label htmlFor="inputAlbum" className="col-sm-2 col-form-label">
+              Album
             </label>
             <div className="col-sm-10">
-              <input type="password" className="form-control" id="inputPassword3" placeholder="Password" />
-            </div>
-          </div>
-          <fieldset className="form-group">
-            <div className="row">
-              <legend className="col-form-label col-sm-2 pt-0">Radios</legend>
-              <div className="col-sm-10">
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked />
-                  <label className="form-check-label" htmlFor="gridRadios1">
-                    First radio
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" />
-                  <label className="form-check-label" htmlFor="gridRadios2">
-                    Second radio
-                  </label>
-                </div>
-                <div className="form-check disabled">
-                  <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled />
-                  <label className="form-check-label" htmlFor="gridRadios3">
-                    Third disabled radio
-                  </label>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-          <div className="form-group row">
-            <div className="col-sm-2">Checkbox</div>
-            <div className="col-sm-10">
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="gridCheck1" />
-                <label className="form-check-label" htmlFor="gridCheck1">
-                  Example checkbox
-                </label>
-              </div>
+              <input type="text" name="album" onChange={(event) => this.handleChange(event)} value={this.state.album} className="form-control" id="inputAlbum" placeholder="Album" />
             </div>
           </div>
           <div className="form-group row">
+            <label htmlFor="inputArtist" className="col-sm-2 col-form-label">
+              Artist
+            </label>
             <div className="col-sm-10">
+              <input type="text" name="artist" onChange={(event) => this.handleChange(event)} value={this.state.artist} className="form-control" id="inputArtist" placeholder="Artist" />
+            </div>
+          </div>
+          <div className="form-group row">
+            <label htmlFor="inputGenre" className="col-sm-2 col-form-label">
+              Genre
+            </label>
+            <div className="col-sm-10">
+              <input type="text" name="genre" onChange={(event) => this.handleChange(event)} value={this.state.genre} className="form-control" id="inputGenre" placeholder="Genre" />
+            </div>
+          </div>
+          <div className="form-group row">
+            <label htmlFor="inputReleaseDate" className="col-sm-2 col-form-label">
+              Release Date
+            </label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                name="releaseDate"
+                onChange={(event) => this.handleChange(event)}
+                value={this.state.releaseDate}
+                className="form-control"
+                id="inputReleaseDate"
+                placeholder="Release Date in format (mm/dd/yyyy)"
+              />
+            </div>
+          </div>
+          <div className="form-group row">
+            <div className="col-sm-10 ">
               <button type="submit" className="btn btn-primary">
-                Sign in
+                Submit New Record
               </button>
             </div>
           </div>
