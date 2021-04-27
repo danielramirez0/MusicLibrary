@@ -14,6 +14,7 @@ class App extends Component {
       viewData: "",
       showTable: false,
       showForm: false,
+      mainEndpoint: "http://localhost:5000/api/songs",
     };
   }
 
@@ -32,9 +33,20 @@ class App extends Component {
     });
   }
 
+  deleteMusicAPICall(endpoint, recordID) {
+    return new Promise((res, rej) => {
+      const response = axios.delete(`${endpoint}/${recordID}`);
+      if (response != null) {
+        res(response);
+      } else {
+        rej(new Error("Unable to delete data at " + endpoint));
+      }
+    });
+  }
+
   async addMusicData(record) {
     try {
-      axios.post("http://localhost:5000/api/songs", record);
+      axios.post(this.state.mainEndpoint, record);
       let recordWithKey = record;
       recordWithKey.id = this.state.viewData.length + 1;
       this.setState({
@@ -52,14 +64,19 @@ class App extends Component {
   }
 
   async deleteMusicData(recordID) {
-    console.log(recordID);
-    axios.delete(`http://localhost:5000/api/songs/${recordID}`);
+    try {
+      const response = await this.deleteMusicAPICall(this.state.mainEndpoint, recordID);
+      this.setState({
+        viewData: [response.data],
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async runPromise() {
     try {
-      // const response = await this.getMusicData("http://www.devcodecampmusiclibrary.com/api/music");
-      const response = await this.getMusicData("http://localhost:5000/api/songs");
+      const response = await this.getMusicData(this.state.mainEndpoint);
       this.setState(((this.state.rootData = response.data), (this.state.viewData = response.data)));
     } catch (error) {
       console.log(error);
