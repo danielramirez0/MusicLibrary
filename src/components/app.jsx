@@ -21,46 +21,55 @@ class App extends Component {
     this.runPromise();
   }
 
-  getMusicData(target) {
+  getMusicData(endpoint) {
     return new Promise((resolve, reject) => {
-      const response = axios.get(target);
+      const response = axios.get(endpoint);
       if (response != null) {
         resolve(response);
       } else {
-        reject(new Error("Unable to access data from " + target));
+        reject(new Error("Unable to access data from " + endpoint));
       }
     });
   }
 
-  addMusicData(target, data) {
+  addMusicData(endpoint, data) {
     return new Promise((resolve, reject) => {
-      const response = axios.post(target, data);
+      const response = axios.post(endpoint, data);
+      let dataWithKey = data;
+      dataWithKey.id = this.state.viewData.length + 1;
+      console.log(data);
       if (response != null) {
         resolve(response);
+        this.setState({
+          viewData: [...this.state.viewData, dataWithKey],
+          showForm: false,
+          showTable: true,
+        });
       } else {
-        reject(new Error("Unable to add record at " + target));
+        reject(new Error("Unable to add record at " + endpoint));
       }
     });
   }
 
-  updateMusicData(target) {
+  updateMusicData(endpoint) {
     return new Promise((resolve, reject) => {
-      const response = axios.put(target);
+      const response = axios.put(endpoint);
       if (response != null) {
         resolve(response);
+        // this.runPromise();
       } else {
-        reject(new Error("Unable to add record at " + target));
+        reject(new Error("Unable to add record at " + endpoint));
       }
     });
   }
 
-  deleteMusicData(target) {
+  deleteMusicData(endpoint, id) {
     return new Promise((resolve, reject) => {
-      const response = axios.delete(target);
+      const response = axios.delete(endpoint, id);
       if (response != null) {
         resolve(response);
       } else {
-        reject(new Error("Unable to add record at " + target));
+        reject(new Error("Unable to add record at " + endpoint));
       }
     });
   }
@@ -94,8 +103,8 @@ class App extends Component {
         <br />
         <TitleBar />
         <ButtonGroup toggleTable={(mode) => this.displayTable(mode)} toggleForm={(mode) => this.displayForm(mode)} resetUI={() => this.displayReset()} />
+        {this.state.showForm === false ? null : <Form addMusicData={(endpoint, data) => this.addMusicData(endpoint, data)} />}
         {this.state.showTable === false ? null : <Table music={this.state.viewData} />}
-        {this.state.showForm === false ? null : <Form music={this.state.viewData} />}
       </div>
     );
   }

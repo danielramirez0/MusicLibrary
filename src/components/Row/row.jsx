@@ -2,17 +2,22 @@ import React from "react";
 import "./row.css";
 
 const Row = (props) => {
-  let renderData = props.music;
+  let sourceData = props.music;
   return (
     <>
-      {renderData.map((renderData) => (
-        <tr key={renderData.id}>
-          <th scope="row">{renderData.id}</th>
-          <td>{renderData.title}</td>
-          <td>{renderData.album}</td>
-          <td>{renderData.artist}</td>
-          <td>{renderData.genre}</td>
-          <td>{renderData.releaseDate}</td>
+      {sourceData.map((music) => (
+        <tr key={music.id}>
+          <th scope="row">{music.id}</th>
+          <td>{music.title}</td>
+          <td>{music.album}</td>
+          <td>{music.artist}</td>
+          <td>{music.genre}</td>
+          <td>{music.releaseDate}</td>
+          <td>
+            <button type="button" className="btn btn-danger" aria-label="Close">
+              Delete
+            </button>
+          </td>
         </tr>
       ))}
     </>

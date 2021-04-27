@@ -50,6 +50,7 @@ class Table extends Component {
               <th scope="col">GENRE</th>
               {/* <th scope="col" style={{ display: this.state.showStore ? "block" : "none" }}> */}
               <th scope="col">RELEASE DATE</th>
+              <th scope="col">REMOVE RECORD</th>
             </tr>
           </thead>
           <tbody>
