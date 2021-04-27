@@ -14,7 +14,7 @@ const Row = (props) => {
           <td>{music.genre}</td>
           <td>{music.releaseDate}</td>
           <td>
-            <button type="button" className="btn btn-danger" aria-label="Close">
+            <button type="button" className="btn btn-danger" aria-label="Close" onClick={() => props.deleteRecord(music.id)}>
               Delete
             </button>
           </td>

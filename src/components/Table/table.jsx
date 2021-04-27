@@ -54,7 +54,7 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            <Row music={this.state.filteredData} />
+            <Row music={this.state.filteredData} deleteRecord={this.props.deleteRecord} />
           </tbody>
         </table>
       </>

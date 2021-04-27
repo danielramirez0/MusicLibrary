@@ -12,7 +12,6 @@ class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let endpoint = "http://localhost:5000/api/songs";
     let record = {
       title: this.state.title,
       album: this.state.album,
@@ -21,7 +20,7 @@ class Form extends Component {
       releaseDate: this.state.releaseDate,
     };
 
-    this.props.addMusicData(endpoint, record);
+    this.props.addMusicData(record);
   }
 
   handleChange(event) {
