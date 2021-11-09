@@ -14,7 +14,8 @@ class App extends Component {
       viewData: "",
       showTable: false,
       showForm: false,
-      mainEndpoint: "http://localhost:5000/api/songs",
+      mainEndpoint: "http://127.0.0.1:8000/music/",
+
     };
   }
 

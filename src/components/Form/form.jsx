@@ -12,12 +12,14 @@ class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    let submitDate = this.state.releaseDate.split('/')
+    // 1963-03-22T13:40:49Z
     let record = {
       title: this.state.title,
       album: this.state.album,
       artist: this.state.artist,
       genre: this.state.genre,
-      releaseDate: this.state.releaseDate,
+      release_date: `${submitDate[2]}-${submitDate[0]}-${submitDate[1]}T00:00:00Z`,
     };
 
     this.props.addMusicData(record);

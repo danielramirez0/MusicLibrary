@@ -12,7 +12,7 @@ const Row = (props) => {
           <td>{music.album}</td>
           <td>{music.artist}</td>
           <td>{music.genre}</td>
-          <td>{music.releaseDate}</td>
+          <td>{music.release_date}</td>
           <td>
             <button type="button" className="btn btn-danger" aria-label="Close" onClick={() => props.deleteRecord(music.id)}>
               Delete
